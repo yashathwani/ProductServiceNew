@@ -4,6 +4,8 @@ import com.scaler.firstspringapi.dtos.FakeStoreProductDto;
 import com.scaler.firstspringapi.models.Product;
 import com.scaler.firstspringapi.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Array;
@@ -22,8 +24,16 @@ public class ProductController {
 
     //localhost:8080/products/1
     @GetMapping("/{id}")
-    public Product getProductById(@PathVariable("id") Long id) {
-        return productService.getProductById(id);
+    public ResponseEntity<Product> getProductById(@PathVariable("id") Long id) {
+        Product product = productService.getProductById(id);
+        ResponseEntity<Product> responseEntity;
+        if (product == null) {
+            responseEntity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return responseEntity;
+        }
+
+        responseEntity = new ResponseEntity<>(product, HttpStatus.OK);
+        return responseEntity;
     }
 
     // localhost:8080/products
