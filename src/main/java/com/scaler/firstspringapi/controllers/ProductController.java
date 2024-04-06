@@ -3,10 +3,12 @@ package com.scaler.firstspringapi.controllers;
 import com.scaler.firstspringapi.exceptions.ProductNotFoundException;
 import com.scaler.firstspringapi.models.Product;
 import com.scaler.firstspringapi.services.ProductService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.List;
 
@@ -16,7 +18,7 @@ import java.util.List;
 public class ProductController {
     private ProductService productService;
 
-    public ProductController(ProductService productService) {
+    public ProductController(@Qualifier("selfProductService") ProductService productService) {
         this.productService = productService;
     }
 
@@ -61,5 +63,10 @@ public class ProductController {
     @PutMapping("/{id}")
     public Product replaceProduct(@PathVariable("id") Long id, @RequestBody Product product) {
         return productService.replaceProduct(id, product);
+    }
+
+    @ExceptionHandler(FileNotFoundException.class)
+    public ResponseEntity<Void> handleSomeException() {
+        return null;
     }
 }
