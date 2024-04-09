@@ -69,4 +69,9 @@ public class ProductController {
     public ResponseEntity<Void> handleSomeException() {
         return null;
     }
+
+    @PostMapping
+    public Product createProduct(@RequestBody Product product) { // can use DTO as well.
+        return productService.createProduct(product);
+    }
 }
