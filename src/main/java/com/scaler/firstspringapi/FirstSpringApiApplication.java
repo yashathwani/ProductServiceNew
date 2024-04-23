@@ -7,11 +7,7 @@ import java.util.HashMap;
 
 @SpringBootApplication
 public class FirstSpringApiApplication {
-
     public static void main(String[] args) {
-
         SpringApplication.run(FirstSpringApiApplication.class, args);
-
     }
-
 }

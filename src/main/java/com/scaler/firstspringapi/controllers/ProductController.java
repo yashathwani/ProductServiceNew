@@ -6,6 +6,7 @@ import com.scaler.firstspringapi.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.objenesis.SpringObjenesis;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
@@ -31,6 +32,8 @@ public class ProductController {
 //            responseEntity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 //            return responseEntity;
 //        }
+
+//        Product sampleProduct = new Product();
 
         responseEntity = new ResponseEntity<>(product, HttpStatus.OK);
         return responseEntity;
