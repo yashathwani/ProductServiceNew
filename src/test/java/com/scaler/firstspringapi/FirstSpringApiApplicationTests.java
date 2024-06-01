@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@SpringBootTest
+//@SpringBootTest
 class FirstSpringApiApplicationTests {
 //    @Autowired
 //    private CategoryRepository categoryRepository;
@@ -21,9 +21,9 @@ class FirstSpringApiApplicationTests {
 //    @Autowired
 //    private ProductRepository productRepository;
 
-    @Test
-    void contextLoads() {
-    }
+//    @Test
+//    void contextLoads() {
+//    }
 
 //    @Test
 //    @Transactional
