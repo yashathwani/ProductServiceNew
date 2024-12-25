@@ -1,5 +1,7 @@
 package com.scaler.firstspringapi.controllers;
 
+import com.scaler.firstspringapi.configs.commons.AuthCommon;
+import com.scaler.firstspringapi.dtos.UserDto;
 import com.scaler.firstspringapi.exceptions.ProductNotFoundException;
 import com.scaler.firstspringapi.models.Product;
 import com.scaler.firstspringapi.services.ProductService;
@@ -18,16 +20,24 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
     private ProductService productService;
+    private AuthCommon authCommon;
 
-    public ProductController(@Qualifier("selfProductService") ProductService productService) {
+    public ProductController(@Qualifier("selfProductService") ProductService productService,AuthCommon authCommon) {
         this.productService = productService;
+        this.authCommon = authCommon;
     }
 
     //localhost:8080/products/1
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable("id") Long id) throws ProductNotFoundException {
-        Product product = productService.getProductById(id);
+        // UserDto userDto = authCommon.validateToken(token);
         ResponseEntity<Product> responseEntity;
+        // if (userDto == null) {
+        //     System.out.println("user is not authenticated");
+        //     responseEntity = new ResponseEntity<>(null,HttpStatus.FORBIDDEN);
+        //     return responseEntity;
+        // }
+        Product product = productService.getProductById(id);
 //        if (product == null) {
 //            responseEntity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 //            return responseEntity;
