@@ -14,7 +14,7 @@ public class RandomTest {
 //        assert i == 2;
 
 //        assert 2 == 3;
-        assertEquals(7, i, "1 + 1 should be equal to 2");
+        assertEquals(2, i, "1 + 1 should be equal to 2");
 
 //        assertTimeout();
     }

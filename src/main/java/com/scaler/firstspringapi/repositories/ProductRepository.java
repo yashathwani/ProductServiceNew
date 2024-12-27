@@ -2,10 +2,13 @@ package com.scaler.firstspringapi.repositories;
 
 import com.scaler.firstspringapi.models.Product;
 import com.scaler.firstspringapi.projections.ProductWithTitleAndDescription;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +31,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     void delete(Product entity);
 
     Product save(Product product); //create and update
+
+    Page<Product> findAll(Pageable pageable);
 
     //HQL
     @Query("select p.title as title, p.description as description from Product p where p.id = :id")

@@ -1,17 +1,20 @@
 package com.scaler.firstspringapi.controllers;
 
 import com.scaler.firstspringapi.configs.commons.AuthCommon;
+import com.scaler.firstspringapi.dtos.ProductResponseDto;
 import com.scaler.firstspringapi.dtos.UserDto;
 import com.scaler.firstspringapi.exceptions.ProductNotFoundException;
 import com.scaler.firstspringapi.models.Product;
 import com.scaler.firstspringapi.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.objenesis.SpringObjenesis;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 
@@ -64,8 +67,15 @@ public class ProductController {
 
     // localhost:8080/products
     @GetMapping()
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+    public Page<Product> getAllProducts(@RequestParam("pageNumber") int pageNumber,@RequestParam("pageSize") int pageSize) {
+
+//        List<Product> products = productService.getAllProducts();
+//        List<ProductResponseDto> productResponseDtos=new ArrayList<>();
+//        for(Product product:products){
+//            productResponseDtos.add(ProductResponseDto.from(product));
+//        }
+//        return productResponseDtos;
+         return productService.getAllProducts(pageNumber,pageSize);
     }
 
     //createProduct
