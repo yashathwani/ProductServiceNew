@@ -25,7 +25,9 @@ public class ProductController {
     private ProductService productService;
     private AuthCommon authCommon;
 
-    public ProductController(@Qualifier("selfProductService") ProductService productService,AuthCommon authCommon) {
+
+
+    public ProductController(@Qualifier("fakeStoreProductService") ProductService productService,AuthCommon authCommon) {
         this.productService = productService;
         this.authCommon = authCommon;
     }
@@ -67,7 +69,7 @@ public class ProductController {
 
     // localhost:8080/products
     @GetMapping()
-    public Page<Product> getAllProducts(@RequestParam("pageNumber") int pageNumber,@RequestParam("pageSize") int pageSize) {
+    public List<Product> getAllProducts() {
 
 //        List<Product> products = productService.getAllProducts();
 //        List<ProductResponseDto> productResponseDtos=new ArrayList<>();
@@ -75,7 +77,7 @@ public class ProductController {
 //            productResponseDtos.add(ProductResponseDto.from(product));
 //        }
 //        return productResponseDtos;
-         return productService.getAllProducts(pageNumber,pageSize);
+         return productService.getAllProducts();
     }
 
     //createProduct

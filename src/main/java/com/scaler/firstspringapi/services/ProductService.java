@@ -10,7 +10,7 @@ import java.util.List;
 public interface ProductService {
     Product getProductById(Long id) throws ProductNotFoundException;
 
-    Page<Product> getAllProducts(int pageNumber, int pageSize);
+    List<Product> getAllProducts();
 
     Product updateProduct(Long id, Product product);
 
